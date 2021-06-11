@@ -1,6 +1,12 @@
 import React from 'react';
 import Grid from "@material-ui/core/Grid";
+import {styled} from "@material-ui/core/styles";
+
 import OrderCard from "./OrderCard";
+
+const OrderGrid = styled(Grid)({
+  maxWidth: "400px"
+});
 
 export default function OrderCardContainer() {
   // TODO: API를 통해 호출해 가져와야함.
@@ -8,8 +14,8 @@ export default function OrderCardContainer() {
     {
       "order_id": 1,
       "restaurant_name": "우리생고기",
-      "restaurant_image": "https://img1.kakaocdn.net/relay/local/R680x420/?fname=http%3A%2F%2Ft1.kakaocdn.net%2Ffiy_reboot%2Fplace%2F362E294D6BA84672BF656B8A44DB9154",
-      "created_at": Date("2021-06-11T18:00:00+09:00"),
+      "restaurant_image": "https://postfiles.pstatic.net/MjAyMDA3MTJfMTY3/MDAxNTk0NTAzNjA0MjQ4._v7cqowx3WntgZqhlceqE1NbeZveVf0w-zvXNYlAaycg.Bf2rgxUZGmoPGYhpKxk-pJ09IKkNONgApMGP7BWiGC4g.JPEG.lookshu/20200709_161255.jpg?type=w2",
+      "deadline": new Date("2021-06-11T18:00:00+09:00"),
       "intra_id": "sunpark",
       "content": "또리갓고기 먹고싶다",
       "join": 2,
@@ -18,8 +24,8 @@ export default function OrderCardContainer() {
     {
       "order_id": 2,
       "restaurant_name": "우리생고기",
-      "restaurant_image": "https://img1.kakaocdn.net/relay/local/R680x420/?fname=http%3A%2F%2Ft1.kakaocdn.net%2Ffiy_reboot%2Fplace%2F362E294D6BA84672BF656B8A44DB9154",
-      "created_at": Date("2021-06-11T18:00:00+09:00"),
+      "restaurant_image": "https://postfiles.pstatic.net/MjAyMDA3MTJfMTY3/MDAxNTk0NTAzNjA0MjQ4._v7cqowx3WntgZqhlceqE1NbeZveVf0w-zvXNYlAaycg.Bf2rgxUZGmoPGYhpKxk-pJ09IKkNONgApMGP7BWiGC4g.JPEG.lookshu/20200709_161255.jpg?type=w2",
+      "deadline": new Date("2021-06-11T18:00:00+09:00"),
       "intra_id": "sunpark",
       "content": "또리갓고기 먹고싶다",
       "join": 2,
@@ -28,8 +34,8 @@ export default function OrderCardContainer() {
     {
       "order_id": 3,
       "restaurant_name": "우리생고기",
-      "restaurant_image": "https://img1.kakaocdn.net/relay/local/R680x420/?fname=http%3A%2F%2Ft1.kakaocdn.net%2Ffiy_reboot%2Fplace%2F362E294D6BA84672BF656B8A44DB9154",
-      "created_at": Date("2021-06-11T18:00:00+09:00"),
+      "restaurant_image": "https://postfiles.pstatic.net/MjAyMDA3MTJfMTY3/MDAxNTk0NTAzNjA0MjQ4._v7cqowx3WntgZqhlceqE1NbeZveVf0w-zvXNYlAaycg.Bf2rgxUZGmoPGYhpKxk-pJ09IKkNONgApMGP7BWiGC4g.JPEG.lookshu/20200709_161255.jpg?type=w2",
+      "deadline": new Date("2021-06-11T18:00:00+09:00"),
       "intra_id": "sunpark",
       "content": "또리갓고기 먹고싶다",
       "join": 2,
@@ -38,8 +44,8 @@ export default function OrderCardContainer() {
     {
       "order_id": 4,
       "restaurant_name": "우리생고기",
-      "restaurant_image": "https://img1.kakaocdn.net/relay/local/R680x420/?fname=http%3A%2F%2Ft1.kakaocdn.net%2Ffiy_reboot%2Fplace%2F362E294D6BA84672BF656B8A44DB9154",
-      "created_at": Date("2021-06-11T18:00:00+09:00"),
+      "restaurant_image": "https://postfiles.pstatic.net/MjAyMDA3MTJfMTY3/MDAxNTk0NTAzNjA0MjQ4._v7cqowx3WntgZqhlceqE1NbeZveVf0w-zvXNYlAaycg.Bf2rgxUZGmoPGYhpKxk-pJ09IKkNONgApMGP7BWiGC4g.JPEG.lookshu/20200709_161255.jpg?type=w2",
+      "deadline": new Date("2021-06-11T18:00:00+09:00"),
       "intra_id": "sunpark",
       "content": "또리갓고기 먹고싶다",
       "join": 2,
@@ -48,8 +54,8 @@ export default function OrderCardContainer() {
     {
       "order_id": 5,
       "restaurant_name": "우리생고기",
-      "restaurant_image": "https://img1.kakaocdn.net/relay/local/R680x420/?fname=http%3A%2F%2Ft1.kakaocdn.net%2Ffiy_reboot%2Fplace%2F362E294D6BA84672BF656B8A44DB9154",
-      "created_at": Date("2021-06-11T18:00:00+09:00"),
+      "restaurant_image": "https://postfiles.pstatic.net/MjAyMDA3MTJfMTY3/MDAxNTk0NTAzNjA0MjQ4._v7cqowx3WntgZqhlceqE1NbeZveVf0w-zvXNYlAaycg.Bf2rgxUZGmoPGYhpKxk-pJ09IKkNONgApMGP7BWiGC4g.JPEG.lookshu/20200709_161255.jpg?type=w2",
+      "deadline": new Date("2021-06-09T22:00:00+09:00"),
       "intra_id": "sunpark",
       "content": "또리갓고기 먹고싶다",
       "join": 2,
@@ -58,11 +64,11 @@ export default function OrderCardContainer() {
   ];
 
   return (
-    <Grid container spacing={6}>
+    <Grid container spacing={6} justify="center" alignItems="flex-start">
       {data.map(d => (
-        <Grid item key={d.order_id} xs={12} sm={6} md={4}>
+        <OrderGrid item key={d.order_id} xs={12} sm={6} md={4}>
           <OrderCard order={d}/>
-        </Grid>
+        </OrderGrid>
       ))}
     </Grid>
   )

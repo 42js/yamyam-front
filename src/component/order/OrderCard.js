@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -9,8 +9,8 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
-import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import AvatarGroup from '@material-ui/lab/AvatarGroup';
 
 import {formatDistance, formatRelative} from "date-fns";
 import {ko} from "date-fns/locale";
@@ -24,15 +24,27 @@ const useStyles = makeStyles((theme) => ({
   orderCardImg: {
     height: 0,
     paddingTop: "56.25%"
+  },
+  assignButton: {
+    marginLeft: "auto"
   }
 }));
 
 export default function OrderCard({order: {order_id, restaurant_name, restaurant_image, deadline, intra_id, content, join, maximum}}) {
+  const [cardElevation, setCardElevation] = useState(1);
+
   const nowDate = new Date();
   const classes = useStyles();
 
+  const onCardMouseOver = () => setCardElevation(4);
+  const onCardMouseOut = () => setCardElevation(1);
+
   return (
-    <Card>
+    <Card
+      elevation={cardElevation}
+      onMouseOver={onCardMouseOver}
+      onMouseOut={onCardMouseOut}
+    >
       <CardHeader
         avatar={
           <Tooltip title={intra_id} arrow>
@@ -66,14 +78,17 @@ export default function OrderCard({order: {order_id, restaurant_name, restaurant
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <Tooltip title="먹으러가기" arrow>
-          <IconButton aria-label="같이 먹으러가기!">
+        <AvatarGroup max={4}>
+          <Avatar alt="Remy Sharp" src="https://cdn.intra.42.fr/users/medium_sunpark.jpg" />
+          <Avatar alt="Travis Howard" src="https://cdn.intra.42.fr/users/medium_sunpark.jpg" />
+          <Avatar alt="Cindy Baker" src="https://cdn.intra.42.fr/users/medium_sunpark.jpg" />
+          <Avatar alt="Agnes Walker" src="https://cdn.intra.42.fr/users/medium_sunpark.jpg" />
+        </AvatarGroup>
+        <Tooltip title="같이 먹기!" arrow>
+          <IconButton aria-label="같이 먹기" className={classes.assignButton}>
             <AssignmentTurnedInIcon />
           </IconButton>
         </Tooltip>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
       </CardActions>
     </Card>
   );

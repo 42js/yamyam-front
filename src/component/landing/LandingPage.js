@@ -5,8 +5,6 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 
-import OrderCardContainer from "./OrderCardContainer";
-
 const useStyles = makeStyles((theme) => ({
   heroContent: {
     padding: theme.spacing(8, 0, 6),
@@ -16,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function OrderPage() {
+export default function LandingPage({onLoginClicked}) {
   const classes = useStyles();
   return (
     <>
@@ -31,20 +29,14 @@ export default function OrderPage() {
           <div className={classes.heroButtons}>
             <Grid container spacing={2} justify="center">
               <Grid item>
-                <Button variant="contained" color="primary">
-                  새로운 밥팟 만들기
-                </Button>
-              </Grid>
-              <Grid item>
-                <Button variant="outlined" color="primary">
-                  내가 들어간 밥팟 보기
+                <Button variant="contained" color="primary" onClick={onLoginClicked}>
+                  42 intra로 로그인하기
                 </Button>
               </Grid>
             </Grid>
           </div>
         </Container>
-      </div>
-      <OrderCardContainer />
+      </div>\
     </>
   )
 }

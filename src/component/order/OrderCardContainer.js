@@ -1,5 +1,7 @@
 import React from 'react';
 import Grid from "@material-ui/core/Grid";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
 import {styled} from "@material-ui/core/styles";
 
 import OrderCard from "./OrderCard";
@@ -64,12 +66,17 @@ export default function OrderCardContainer() {
   ];
 
   return (
-    <Grid container spacing={6} justify="center" alignItems="flex-start">
-      {data.map(d => (
-        <OrderGrid item key={d.order_id} xs={12} sm={6} md={4}>
-          <OrderCard order={d}/>
-        </OrderGrid>
-      ))}
-    </Grid>
+    <>
+      <Grid container spacing={6} justify="center" alignItems="flex-start">
+        {data.map(d => (
+          <OrderGrid item key={d.order_id} xs={12} sm={6} md={4}>
+            <OrderCard order={d}/>
+          </OrderGrid>
+        ))}
+      </Grid>
+      <Fab color="primary" aria-label="add">
+        <AddIcon />
+      </Fab>
+    </>
   )
 }

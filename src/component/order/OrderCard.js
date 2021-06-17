@@ -30,7 +30,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function OrderCard({order: {order_id, restaurant_name, restaurant_image, deadline, intra_id, content, join, maximum}}) {
+export default function OrderCard({order, onOrderCardClicked}) {
+  const {restaurant_name, restaurant_image, deadline, intra_id, content, join, maximum} = order
+
   const [cardElevation, setCardElevation] = useState(1);
 
   const nowDate = new Date();
@@ -44,6 +46,7 @@ export default function OrderCard({order: {order_id, restaurant_name, restaurant
       elevation={cardElevation}
       onMouseOver={onCardMouseOver}
       onMouseOut={onCardMouseOut}
+      onClick={() => onOrderCardClicked(order)}
     >
       <CardHeader
         avatar={

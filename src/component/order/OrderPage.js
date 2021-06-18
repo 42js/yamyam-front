@@ -122,7 +122,7 @@ export default function OrderPage() {
         </Fab>
       </div>
       {focusOrder && (
-        <OrderDetailDialog isOpen={isDetailDialogOpen} onDialogClose={onDetailDialogClosed} order={focusOrder}/>
+        <OrderDetailDialog order={focusOrder} isOpen={isDetailDialogOpen} onDialogClose={onDetailDialogClosed} />
       )}
     </>
   )

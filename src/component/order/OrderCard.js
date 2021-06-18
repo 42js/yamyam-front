@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -15,6 +15,8 @@ import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import {formatDistance, formatRelative} from "date-fns";
 import {ko} from "date-fns/locale";
 import {Tooltip} from "@material-ui/core";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
 
 const useStyles = makeStyles((theme) => ({
   cardAvatar: {
@@ -34,12 +36,17 @@ export default function OrderCard({order, onOrderCardClicked}) {
   const {restaurant_name, restaurant_image, deadline, intra_id, content, join, maximum} = order
 
   const [cardElevation, setCardElevation] = useState(1);
+  const [detailAnchorEl, setDetailAnchorEl] = useState(null);
+  const isMenuOpened = Boolean(detailAnchorEl);
 
   const nowDate = new Date();
   const classes = useStyles();
 
   const onCardMouseOver = () => setCardElevation(4);
   const onCardMouseOut = () => setCardElevation(1);
+
+  const onOptionClicked = (e) => setDetailAnchorEl(e.target);
+  const onOptionMenuClosed = () => setDetailAnchorEl(null);
 
   return (
     <Card
@@ -51,13 +58,35 @@ export default function OrderCard({order, onOrderCardClicked}) {
       <CardHeader
         avatar={
           <Tooltip title={intra_id} arrow>
-            <Avatar aria-label={intra_id} className={classes.cardAvatar} src={`https://cdn.intra.42.fr/users/medium_${intra_id}.jpg`} />
+            <Avatar
+              aria-label={intra_id}
+              className={classes.cardAvatar}
+              src={`https://cdn.intra.42.fr/users/medium_${intra_id}.jpg`}
+            />
           </Tooltip>
         }
         action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
+          <>
+            <IconButton aria-label="settings" onClick={onOptionClicked}>
+              <MoreVertIcon/>
+            </IconButton>
+            <Menu
+              anchorEl={detailAnchorEl}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={isMenuOpened}
+              onClose={onOptionMenuClosed}
+            >
+              <MenuItem onClick={onOptionMenuClosed}>수정하기</MenuItem>
+            </Menu>
+          </>
         }
         title={
           <Typography variant="h6">{restaurant_name}</Typography>
@@ -82,14 +111,14 @@ export default function OrderCard({order, onOrderCardClicked}) {
       </CardContent>
       <CardActions disableSpacing>
         <AvatarGroup max={4}>
-          <Avatar alt="Remy Sharp" src="https://cdn.intra.42.fr/users/medium_sunpark.jpg" />
-          <Avatar alt="Travis Howard" src="https://cdn.intra.42.fr/users/medium_sunpark.jpg" />
-          <Avatar alt="Cindy Baker" src="https://cdn.intra.42.fr/users/medium_sunpark.jpg" />
-          <Avatar alt="Agnes Walker" src="https://cdn.intra.42.fr/users/medium_sunpark.jpg" />
+          <Avatar alt="Remy Sharp" src="https://cdn.intra.42.fr/users/medium_sunpark.jpg"/>
+          <Avatar alt="Travis Howard" src="https://cdn.intra.42.fr/users/medium_sunpark.jpg"/>
+          <Avatar alt="Cindy Baker" src="https://cdn.intra.42.fr/users/medium_sunpark.jpg"/>
+          <Avatar alt="Agnes Walker" src="https://cdn.intra.42.fr/users/medium_sunpark.jpg"/>
         </AvatarGroup>
         <Tooltip title="같이 먹기!" arrow>
           <IconButton aria-label="같이 먹기" className={classes.assignButton}>
-            <AssignmentTurnedInIcon />
+            <AssignmentTurnedInIcon/>
           </IconButton>
         </Tooltip>
       </CardActions>

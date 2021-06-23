@@ -13,7 +13,7 @@ export default function App() {
   const [auth, setAuth] = useState(false);
   const history = useHistory();
 
-  const onLoginClicked = (e) => {
+  const onLoginClicked = () => {
     // TODO: API와 연동해야 함
     history.push('/auth?token=test');
   };
@@ -34,7 +34,7 @@ export default function App() {
           />
           <Route
             exact path="/auth"
-            render={() => (<AuthPage auth={auth} setAuth={setAuth}/>)}
+            render={() => (<AuthPage setAuth={setAuth}/>)}
           />
         </Switch>
       </Container>

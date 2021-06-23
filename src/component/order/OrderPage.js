@@ -83,7 +83,11 @@ export default function OrderPage() {
   ];
 
   const classes = useStyles();
-  const onOrderCardClicked = (order) => {
+  const onOrderCardClicked = (e, order) => {
+    console.log(e);
+    if (e.target.nodeName === 'BUTTON' || e.target.nodeName === 'svg' || e.target.nodeName === 'path' ||
+        (e.target.nodeName === 'DIV' && e.target.className === ''))
+      return;
     setFocusOrder(order);
     setDetailDialogOpen(true);
   }

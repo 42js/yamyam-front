@@ -53,7 +53,7 @@ export default function OrderCard({order, onOrderCardClicked}) {
       elevation={cardElevation}
       onMouseOver={onCardMouseOver}
       onMouseOut={onCardMouseOut}
-      onClick={() => onOrderCardClicked(order)}
+      onClick={(e) => onOrderCardClicked(e, order)}
     >
       <CardHeader
         avatar={

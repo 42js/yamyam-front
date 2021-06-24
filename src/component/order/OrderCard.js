@@ -19,6 +19,11 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 
 const useStyles = makeStyles((theme) => ({
+  cardContainer: {
+    "&:hover": {
+      cursor: "pointer"
+    }
+  },
   cardAvatar: {
     width: theme.spacing(6),
     height: theme.spacing(6)
@@ -54,6 +59,7 @@ export default function OrderCard({order, onOrderCardClicked}) {
       onMouseOver={onCardMouseOver}
       onMouseOut={onCardMouseOut}
       onClick={(e) => onOrderCardClicked(e, order)}
+      className={classes.cardContainer}
     >
       <CardHeader
         avatar={

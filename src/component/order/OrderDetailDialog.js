@@ -28,7 +28,10 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     bottom: theme.spacing(4),
     right: theme.spacing(4),
-  }
+  },
+  inline: {
+    display: 'inline',
+  },
 }));
 
 export default function OrderDetailDialog({
@@ -90,12 +93,12 @@ export default function OrderDetailDialog({
         <List>
           {orderData.map((data, index) => (
             <>
-            <ListItem alignItems="flex-start">
+            <ListItem alignItems="flex-start" key={data.intra_id}>
               <ListItemAvatar>
                 <Avatar alt={data.intra_id} src={`https://cdn.intra.42.fr/users/medium_${data.intra_id}.jpg`} />
               </ListItemAvatar>
               <ListItemText
-                primary={data.menu}
+                primary={data.menu.join(', ')}
                 secondary={
                   <>
                     <Typography
@@ -111,7 +114,8 @@ export default function OrderDetailDialog({
                 }
               />
             </ListItem>
-            {index !== orderData.length - 1 && <Divider variant="inset" component="li" />}
+            { index !== orderData.length - 1 &&
+            <Divider key={`${data.intra_id}_divider`} variant="inset" component="li" />}
             </>
           ))}
         </List>

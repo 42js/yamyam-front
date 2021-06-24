@@ -1,10 +1,8 @@
-import Dialog from "@material-ui/core/Dialog";
-import Avatar from '@material-ui/core/Avatar';
-import {makeStyles} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
+import React from "react";
 import {formatRelative} from "date-fns";
 import {ko} from "date-fns/locale";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
@@ -12,8 +10,10 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Container from "@material-ui/core/Container";
 import Divider from "@material-ui/core/Divider";
 import Fab from "@material-ui/core/Fab";
-import React from "react";
 import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
+import Dialog from "@material-ui/core/Dialog";
+import Avatar from '@material-ui/core/Avatar';
+import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   detailContainer: {

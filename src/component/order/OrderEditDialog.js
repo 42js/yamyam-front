@@ -1,27 +1,27 @@
-import Dialog from "@material-ui/core/Dialog";
+import React, { useState } from "react";
 import koLocale from "date-fns/locale/ko";
 import addDays from "date-fns/addDays";
+import Dialog from "@material-ui/core/Dialog";
 import {makeStyles} from "@material-ui/core/styles";
-import React, { useState } from "react";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import TextField from "@material-ui/core/TextField";
-import {DateTimePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
+import {DateTimePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
 
 const useStyles = makeStyles((theme) => ({
   deadlinePicker: {
     marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(4)
+    marginBottom: theme.spacing(3)
   },
   maximumLabel: {
     marginTop: theme.spacing(4)
@@ -34,10 +34,10 @@ export default function OrderEditDialog({ isOpen, onDialogClose, order }) {
   const nowDate = new Date();
   const classes = useStyles();
 
-  const [deadline, setDeadline] = useState(null);
-  const [storeId, setStoreId] = useState('');
-  const [maximum, setMaximum] = useState(4);
-  const [comment, setComment] = useState('');
+  const [deadline, setDeadline] = useState(order ? order.deadline : null);
+  const [storeId, setStoreId] = useState(order ? order.order_id : '');
+  const [maximum, setMaximum] = useState(order ? order.maximum : 4);
+  const [content, setContent] = useState(order ? order.content : '');
 
   // TODO: API 연동
   const storeData = [
@@ -95,13 +95,13 @@ export default function OrderEditDialog({ isOpen, onDialogClose, order }) {
 
   const handleStoreSelect = (e) => setStoreId(e.target.value);
   const handleMaximumSlider = (_, value) => setMaximum(value);
-  const handleCommentInput = (e) => setComment(e.target.value);
+  const handleContentInput = (e) => setContent(e.target.value);
 
   const onConfirmClicked = () => {
     console.log(deadline);
     console.log(storeId);
     console.log(maximum);
-    console.log(comment);
+    console.log(content);
     onDialogClose();
   };
 
@@ -151,8 +151,8 @@ export default function OrderEditDialog({ isOpen, onDialogClose, order }) {
           label="남길 말"
           multiline
           fullWidth
-          value={comment}
-          onChange={handleCommentInput}
+          value={content}
+          onChange={handleContentInput}
         />
       </DialogContent>
       <DialogActions>

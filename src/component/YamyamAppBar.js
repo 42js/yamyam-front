@@ -1,3 +1,5 @@
+import React, {useState} from "react";
+import {makeStyles} from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import RestaurantIcon from "@material-ui/icons/Restaurant";
 import Typography from "@material-ui/core/Typography";
@@ -6,8 +8,6 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import AppBar from "@material-ui/core/AppBar";
-import React, {useState} from "react";
-import {makeStyles} from "@material-ui/core/styles";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 
 const useStyles = makeStyles((theme) => ({

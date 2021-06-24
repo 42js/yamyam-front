@@ -4,10 +4,10 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-
-import OrderCardContainer from "./OrderCardContainer";
 import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
+
+import OrderCardContainer from "./OrderCardContainer";
 import OrderDetailDialog from "./OrderDetailDialog";
 import OrderEditDialog from "./OrderEditDialog";
 
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 export default function OrderPage() {
   const [isDetailDialogOpen, setDetailDialogOpen] = useState(false);
   const [focusOrder, setFocusOrder] = useState(undefined);
-  const [isCreateOrderOpen, setIsCreateOrderOpen] = useState(false);
+  const [isOrderEditOpen, setIsOrderEditOpen] = useState(false);
 
   // TODO: API를 통해 호출해 가져와야함.
   const data = [
@@ -99,13 +99,13 @@ export default function OrderPage() {
 
   const onOrderEditClicked = (order) => {
     setFocusOrder(order);
-    setIsCreateOrderOpen(true);
+    setIsOrderEditOpen(true);
   };
-  const onOrderFABClicked = () => (setIsCreateOrderOpen(true));
+  const onOrderCreateClicked = () => (setIsOrderEditOpen(true));
 
   const onOrderEditClosed = () => {
     setFocusOrder(undefined);
-    setIsCreateOrderOpen(false)
+    setIsOrderEditOpen(false)
   };
 
   return (
@@ -121,7 +121,7 @@ export default function OrderPage() {
           <div className={classes.heroButtons}>
             <Grid container spacing={2} justify="center">
               <Grid item>
-                <Button variant="contained" color="primary" onClick={onOrderEditClicked}>
+                <Button variant="contained" color="primary" onClick={onOrderCreateClicked}>
                   새로운 밥팟 만들기
                 </Button>
               </Grid>
@@ -136,15 +136,15 @@ export default function OrderPage() {
       </div>
       <OrderCardContainer data={data} onOrderCardClicked={onOrderCardClicked} onOrderEditClicked={onOrderEditClicked}/>
       <div role="presentation" className={classes.fab}>
-        <Fab color="primary" aria-label="add" onClick={onOrderFABClicked}>
+        <Fab color="primary" aria-label="add" onClick={onOrderCreateClicked}>
           <AddIcon />
         </Fab>
       </div>
       { focusOrder && (
         <OrderDetailDialog order={focusOrder} isOpen={isDetailDialogOpen} onDialogClose={onDetailDialogClosed} />
       )}
-      { isCreateOrderOpen && (
-        <OrderEditDialog isOpen={isCreateOrderOpen} onDialogClose={onOrderEditClosed} order={focusOrder}/>
+      { isOrderEditOpen && (
+        <OrderEditDialog isOpen={isOrderEditOpen} onDialogClose={onOrderEditClosed} order={focusOrder}/>
       )}
     </>
   )

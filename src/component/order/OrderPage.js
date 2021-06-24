@@ -9,6 +9,7 @@ import OrderCardContainer from "./OrderCardContainer";
 import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 import OrderDetailDialog from "./OrderDetailDialog";
+import OrderEditDialog from "./OrderEditDialog";
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -27,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 export default function OrderPage() {
   const [isDetailDialogOpen, setDetailDialogOpen] = useState(false);
   const [focusOrder, setFocusOrder] = useState(undefined);
+  const [isCreateOrderOpen, setIsCreateOrderOpen] = useState(false);
 
   // TODO: API를 통해 호출해 가져와야함.
   const data = [
@@ -34,7 +36,7 @@ export default function OrderPage() {
       "order_id": 1,
       "restaurant_name": "우리생고기",
       "restaurant_image": "https://postfiles.pstatic.net/MjAyMDA3MTJfMTY3/MDAxNTk0NTAzNjA0MjQ4._v7cqowx3WntgZqhlceqE1NbeZveVf0w-zvXNYlAaycg.Bf2rgxUZGmoPGYhpKxk-pJ09IKkNONgApMGP7BWiGC4g.JPEG.lookshu/20200709_161255.jpg?type=w2",
-      "deadline": new Date("2021-06-11T18:00:00+09:00"),
+      "deadline": new Date("2021-06-24T18:00:00+09:00"),
       "intra_id": "sunpark",
       "content": "또리갓고기 먹고싶다",
       "join": 2,
@@ -81,17 +83,30 @@ export default function OrderPage() {
       "maximum": 4,
     },
   ];
-
   const classes = useStyles();
+
   const onOrderCardClicked = (e, order) => {
-    console.log(e);
     if (e.target.nodeName === 'BUTTON' || e.target.nodeName === 'svg' || e.target.nodeName === 'path' ||
-        (e.target.nodeName === 'DIV' && e.target.className === ''))
+      e.target.nodeName === 'LI' || (e.target.nodeName === 'DIV' && e.target.className === ''))
       return;
     setFocusOrder(order);
     setDetailDialogOpen(true);
   }
-  const onDetailDialogClosed = () => (setDetailDialogOpen(false));
+  const onDetailDialogClosed = () => {
+    setFocusOrder(undefined);
+    setDetailDialogOpen(false);
+  };
+
+  const onOrderEditClicked = (order) => {
+    setFocusOrder(order);
+    setIsCreateOrderOpen(true);
+  };
+  const onOrderFABClicked = () => (setIsCreateOrderOpen(true));
+
+  const onOrderEditClosed = () => {
+    setFocusOrder(undefined);
+    setIsCreateOrderOpen(false)
+  };
 
   return (
     <>
@@ -106,7 +121,7 @@ export default function OrderPage() {
           <div className={classes.heroButtons}>
             <Grid container spacing={2} justify="center">
               <Grid item>
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="primary" onClick={onOrderEditClicked}>
                   새로운 밥팟 만들기
                 </Button>
               </Grid>
@@ -119,14 +134,17 @@ export default function OrderPage() {
           </div>
         </Container>
       </div>
-      <OrderCardContainer data={data} onOrderCardClicked={onOrderCardClicked}/>
+      <OrderCardContainer data={data} onOrderCardClicked={onOrderCardClicked} onOrderEditClicked={onOrderEditClicked}/>
       <div role="presentation" className={classes.fab}>
-        <Fab color="primary" aria-label="add">
+        <Fab color="primary" aria-label="add" onClick={onOrderFABClicked}>
           <AddIcon />
         </Fab>
       </div>
-      {focusOrder && (
+      { focusOrder && (
         <OrderDetailDialog order={focusOrder} isOpen={isDetailDialogOpen} onDialogClose={onDetailDialogClosed} />
+      )}
+      { isCreateOrderOpen && (
+        <OrderEditDialog isOpen={isCreateOrderOpen} onDialogClose={onOrderEditClosed} order={focusOrder}/>
       )}
     </>
   )

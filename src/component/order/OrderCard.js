@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function OrderCard({order, onOrderCardClicked}) {
+export default function OrderCard({order, onOrderCardClicked, onOrderEditClicked}) {
   const {restaurant_name, restaurant_image, deadline, intra_id, content, join, maximum} = order
 
   const [cardElevation, setCardElevation] = useState(1);
@@ -51,7 +51,13 @@ export default function OrderCard({order, onOrderCardClicked}) {
   const onCardMouseOut = () => setCardElevation(1);
 
   const onOptionClicked = (e) => setDetailAnchorEl(e.target);
-  const onOptionMenuClosed = () => setDetailAnchorEl(null);
+  const onOptionMenuClosed = () => {
+    setDetailAnchorEl(null);
+  };
+  const onEditMenuClicked = () => {
+    console.log("this");
+    onOrderEditClicked(order);
+  }
 
   return (
     <Card
@@ -90,7 +96,7 @@ export default function OrderCard({order, onOrderCardClicked}) {
               open={isMenuOpened}
               onClose={onOptionMenuClosed}
             >
-              <MenuItem onClick={onOptionMenuClosed}>수정하기</MenuItem>
+              <MenuItem onClick={onEditMenuClicked}>수정하기</MenuItem>
             </Menu>
           </>
         }

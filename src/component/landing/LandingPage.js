@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function LandingPage({onLoginClicked}) {
+export default function LandingPage() {
   const classes = useStyles();
   return (
     <>
@@ -29,9 +29,11 @@ export default function LandingPage({onLoginClicked}) {
           <div className={classes.heroButtons}>
             <Grid container spacing={2} justify="center">
               <Grid item>
-                <Button variant="contained" color="primary" onClick={onLoginClicked}>
-                  42 intra로 로그인하기
-                </Button>
+                <a href={`${process.env.REACT_APP_API_URL}/auth`}>
+                  <Button variant="contained" color="primary">
+                    42 intra로 로그인하기
+                  </Button>
+                </a>
               </Grid>
             </Grid>
           </div>

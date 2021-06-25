@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState} from "react";
-import {Route, Switch, useHistory} from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from '@material-ui/core/Container';
 
@@ -11,12 +11,6 @@ import AuthPage from "./component/auth/AuthPage";
 
 export default function App() {
   const [auth, setAuth] = useState(false);
-  const history = useHistory();
-
-  const onLoginClicked = () => {
-    // TODO: API와 연동해야 함
-    history.push('/auth?token=test');
-  };
 
   return (
     <>
@@ -29,7 +23,7 @@ export default function App() {
             render={() => (
               auth ?
               <OrderPage /> :
-                <LandingPage onLoginClicked={onLoginClicked}/>
+                <LandingPage />
             )}
           />
           <Route

@@ -11,6 +11,7 @@ import OrderCardContainer from "./OrderCardContainer";
 import OrderDetailDialog from "./OrderDetailDialog";
 import OrderEditDialog from "./OrderEditDialog";
 import { getOrders } from "../../api/orderApi";
+import OrderJoinDialog from "./OrderJoinDialog";
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -30,6 +31,7 @@ export default function OrderPage() {
   const [isDetailDialogOpen, setDetailDialogOpen] = useState(false);
   const [focusOrder, setFocusOrder] = useState(undefined);
   const [isOrderEditOpen, setIsOrderEditOpen] = useState(false);
+  const [isOrderJoinOpen, setIsOrderJoinOpen] = useState(false);
 
   useEffect(() => {
     getOrders();
@@ -91,8 +93,9 @@ export default function OrderPage() {
   const classes = useStyles();
 
   const onOrderCardClicked = (e, order) => {
-    if (e.target.nodeName === 'BUTTON' || e.target.nodeName === 'svg' || e.target.nodeName === 'path' ||
-      e.target.nodeName === 'LI' || (e.target.nodeName === 'DIV' && e.target.className === ''))
+    if (e !== undefined && 
+      (e.target.nodeName === 'BUTTON' || e.target.nodeName === 'svg' || e.target.nodeName === 'path' ||
+      e.target.nodeName === 'LI' || (e.target.nodeName === 'DIV' && e.target.className === '')))
       return;
     setFocusOrder(order);
     setDetailDialogOpen(true);
@@ -107,11 +110,15 @@ export default function OrderPage() {
     setIsOrderEditOpen(true);
   };
   const onOrderCreateClicked = () => (setIsOrderEditOpen(true));
+  const onOrderJoinClicked = () => (setIsOrderJoinOpen(true));
 
   const onOrderEditClosed = () => {
     setFocusOrder(undefined);
     setIsOrderEditOpen(false)
   };
+  const onOrderJoinClosed = () => {
+    setIsOrderJoinOpen(false);
+  }
 
   return (
     <>
@@ -139,17 +146,30 @@ export default function OrderPage() {
           </div>
         </Container>
       </div>
-      <OrderCardContainer data={data} onOrderCardClicked={onOrderCardClicked} onOrderEditClicked={onOrderEditClicked}/>
+      <OrderCardContainer
+        data={data}
+        onOrderCardClicked={onOrderCardClicked}
+        onOrderEditClicked={onOrderEditClicked}
+        onOrderJoinClicked={onOrderJoinClicked}
+      />
       <div role="presentation" className={classes.fab}>
         <Fab color="primary" aria-label="add" onClick={onOrderCreateClicked}>
           <AddIcon />
         </Fab>
       </div>
       { focusOrder && (
-        <OrderDetailDialog order={focusOrder} isOpen={isDetailDialogOpen} onDialogClose={onDetailDialogClosed} />
+        <OrderDetailDialog
+          order={focusOrder}
+          isOpen={isDetailDialogOpen}
+          onDialogClose={onDetailDialogClosed}
+          onOrderJoinClicked={onOrderJoinClicked}
+        />
       )}
       { isOrderEditOpen && (
         <OrderEditDialog isOpen={isOrderEditOpen} onDialogClose={onOrderEditClosed} order={focusOrder}/>
+      )}
+      { isOrderJoinOpen && (
+        <OrderJoinDialog isOpen={isOrderJoinOpen} onDialogClose={onOrderJoinClosed} order={focusOrder}/>
       )}
     </>
   )

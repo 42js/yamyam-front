@@ -12,7 +12,7 @@ import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 
-import {formatDistance, formatRelative} from "date-fns";
+import {formatDistanceToNow, formatRelative} from "date-fns";
 import {ko} from "date-fns/locale";
 import {Tooltip} from "@material-ui/core";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -37,8 +37,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function OrderCard({order, onOrderCardClicked, onOrderEditClicked}) {
-  const {restaurant_name, restaurant_image, deadline, intra_id, content, join, maximum} = order
+export default function OrderCard({
+  order,
+  onOrderCardClicked,
+  onOrderEditClicked,
+  onOrderJoinClicked
+}) {
+  const {restaurant_name, restaurant_image, deadline, intra_id, content, join, maximum} = order;
 
   const [cardElevation, setCardElevation] = useState(1);
   const [detailAnchorEl, setDetailAnchorEl] = useState(null);
@@ -55,9 +60,13 @@ export default function OrderCard({order, onOrderCardClicked, onOrderEditClicked
     setDetailAnchorEl(null);
   };
   const onEditMenuClicked = () => {
-    console.log("this");
     onOrderEditClicked(order);
   }
+  const onOrderJoinButtonClicked = () => {
+    onOrderCardClicked(undefined, order);
+    onOrderJoinClicked();
+  }
+
 
   return (
     <Card
@@ -106,7 +115,7 @@ export default function OrderCard({order, onOrderCardClicked, onOrderEditClicked
         subheader={
           <Tooltip title={formatRelative(deadline, nowDate, {locale: ko})} arrow className="subheader">
             <span>
-              {`${join} / ${maximum} · 마감 ${formatDistance(deadline, nowDate, {locale: ko})} 전`}
+              {`${join} / ${maximum} · 마감 ${formatDistanceToNow(order.deadline, {addSuffix: true, locale: ko})}`}
             </span>
           </Tooltip>
         }
@@ -129,7 +138,11 @@ export default function OrderCard({order, onOrderCardClicked, onOrderEditClicked
           <Avatar alt="Agnes Walker" src="https://cdn.intra.42.fr/users/medium_sunpark.jpg"/>
         </AvatarGroup>
         <Tooltip title="같이 먹기!" arrow>
-          <IconButton aria-label="같이 먹기" className={classes.assignButton}>
+          <IconButton
+            aria-label="같이 먹기"
+            className={classes.assignButton}
+            onClick={onOrderJoinButtonClicked}
+          >
             <AssignmentTurnedInIcon/>
           </IconButton>
         </Tooltip>

@@ -46,7 +46,8 @@ export default function OrderDetailDialog({
     content,
     join,
     maximum
-  }
+  },
+  onOrderJoinClicked
 }) {
   const classes = useStyles();
   const nowDate = new Date();
@@ -121,7 +122,7 @@ export default function OrderDetailDialog({
         </List>
       </Container>
       <div role="presentation" className={classes.fab}>
-        <Fab color="primary" aria-label="add">
+        <Fab color="primary" aria-label="add" onClick={onOrderJoinClicked}>
           <AssignmentTurnedInIcon />
         </Fab>
       </div>

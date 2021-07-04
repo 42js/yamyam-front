@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
@@ -10,6 +10,7 @@ import Fab from "@material-ui/core/Fab";
 import OrderCardContainer from "./OrderCardContainer";
 import OrderDetailDialog from "./OrderDetailDialog";
 import OrderEditDialog from "./OrderEditDialog";
+import { getOrders } from "../../api/orderApi";
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -29,6 +30,10 @@ export default function OrderPage() {
   const [isDetailDialogOpen, setDetailDialogOpen] = useState(false);
   const [focusOrder, setFocusOrder] = useState(undefined);
   const [isOrderEditOpen, setIsOrderEditOpen] = useState(false);
+
+  useEffect(() => {
+    getOrders();
+  }, []);
 
   // TODO: API를 통해 호출해 가져와야함.
   const data = [

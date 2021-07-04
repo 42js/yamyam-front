@@ -92,31 +92,31 @@ export default function OrderDetailDialog({
         <Typography variant="body1">{content}</Typography>
         <List>
           {orderData.map((data, index) => (
-            <>
-            <ListItem alignItems="flex-start" key={data.intra_id}>
-              <ListItemAvatar>
-                <Avatar alt={data.intra_id} src={`https://cdn.intra.42.fr/users/medium_${data.intra_id}.jpg`} />
-              </ListItemAvatar>
-              <ListItemText
-                primary={data.menu.join(', ')}
-                secondary={
-                  <>
-                    <Typography
-                      component="span"
-                      variant="body2"
-                      className={classes.inline}
-                      color="textPrimary"
-                    >
-                      {data.intra_id}
-                    </Typography>
-                    {` — ${data.comment}`}
-                  </>
-                }
-              />
-            </ListItem>
-            { index !== orderData.length - 1 &&
-            <Divider key={`${data.intra_id}_divider`} variant="inset" component="li" />}
-            </>
+            <div key={data.intra_id}>
+              <ListItem alignItems="flex-start" key={data.intra_id}>
+                <ListItemAvatar>
+                  <Avatar alt={data.intra_id} src={`https://cdn.intra.42.fr/users/medium_${data.intra_id}.jpg`} />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={data.menu.join(', ')}
+                  secondary={
+                    <>
+                      <Typography
+                        component="span"
+                        variant="body2"
+                        className={classes.inline}
+                        color="textPrimary"
+                      >
+                        {data.intra_id}
+                      </Typography>
+                      {` — ${data.comment}`}
+                    </>
+                  }
+                />
+              </ListItem>
+              { index !== orderData.length - 1 &&
+              <Divider key={`${data.intra_id}_divider`} variant="inset" component="li" />}
+            </div>
           ))}
         </List>
       </Container>

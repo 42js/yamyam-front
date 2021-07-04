@@ -7,6 +7,9 @@ import YamyamAppBar from "./component/YamyamAppBar";
 import AuthPage from "./component/auth/AuthPage";
 import { UserProvider } from './api/userContext';
 import MainPage from './component/MainPage';
+import axios from 'axios';
+
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 export default function App() {
   return (

@@ -1,37 +1,30 @@
 import React from 'react';
-import {useState} from "react";
 import { Route, Switch } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from '@material-ui/core/Container';
 
-import OrderPage from "./component/order/OrderPage";
-import LandingPage from "./component/landing/LandingPage";
 import YamyamAppBar from "./component/YamyamAppBar";
 import AuthPage from "./component/auth/AuthPage";
+import { UserProvider } from './api/userContext';
+import MainPage from './component/MainPage';
 
 export default function App() {
-  const [auth, setAuth] = useState(false);
-
   return (
-    <>
+    <UserProvider>
       <CssBaseline/>
-      <YamyamAppBar auth={auth} setAuth={setAuth}/>
+      <YamyamAppBar/>
       <Container>
         <Switch>
           <Route
             exact path="/"
-            render={() => (
-              auth ?
-              <OrderPage /> :
-                <LandingPage />
-            )}
+            component={MainPage}
           />
           <Route
             exact path="/auth"
-            render={() => (<AuthPage setAuth={setAuth}/>)}
+            component={AuthPage}
           />
         </Switch>
       </Container>
-    </>
+    </UserProvider>
   );
 }

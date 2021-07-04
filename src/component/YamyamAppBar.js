@@ -9,6 +9,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import AppBar from "@material-ui/core/AppBar";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
+import { LOGOUT, useUserReducer } from "../api/userContext";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -31,8 +32,11 @@ function ElevationScroll({children, window}) {
   });
 }
 
-export default function YamyamAppBar({auth, setAuth}) {
+export default function YamyamAppBar() {
   const classes = useStyles();
+
+  const [state, dispatch] = useUserReducer();
+  const { isLogin } = state;
 
   const [userAnchorEl, setUserAnchorEl] = useState(null);
   const isMenuOpened = Boolean(userAnchorEl);
@@ -42,8 +46,7 @@ export default function YamyamAppBar({auth, setAuth}) {
   const onUserMenuClosed = () => setUserAnchorEl(null);
 
   const onLogoutClicked = (e) => {
-    // TODO: API와 연동해야 함
-    setAuth(false);
+    dispatch({ type: LOGOUT });
     onUserMenuClosed(e);
   };
 
@@ -56,7 +59,7 @@ export default function YamyamAppBar({auth, setAuth}) {
             <Typography variant="h6" className={classes.title}>
               얌얌42
             </Typography>
-            {auth && (
+            {isLogin && (
               <div>
                 <IconButton
                   aria-label="account of current user"

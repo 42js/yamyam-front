@@ -38,7 +38,7 @@ export default function OrderDetailDialog({
   isOpen,
   onDialogClose,
   order: {
-    order_id,
+    id,
     restaurant_name,
     restaurant_image,
     deadline,

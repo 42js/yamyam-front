@@ -35,7 +35,7 @@ export default function OrderEditDialog({ isOpen, onDialogClose, order }) {
   const classes = useStyles();
 
   const [deadline, setDeadline] = useState(order ? order.deadline : null);
-  const [storeId, setStoreId] = useState(order ? order.order_id : '');
+  const [storeId, setStoreId] = useState(order ? order.id : '');
   const [maximum, setMaximum] = useState(order ? order.maximum : 4);
   const [content, setContent] = useState(order ? order.content : '');
 

@@ -38,7 +38,7 @@ export default function OrderPage() {
   // TODO: API를 통해 호출해 가져와야함.
   const data = [
     {
-      "order_id": 1,
+      "id": 1,
       "restaurant_name": "우리생고기",
       "restaurant_image": "https://postfiles.pstatic.net/MjAyMDA3MTJfMTY3/MDAxNTk0NTAzNjA0MjQ4._v7cqowx3WntgZqhlceqE1NbeZveVf0w-zvXNYlAaycg.Bf2rgxUZGmoPGYhpKxk-pJ09IKkNONgApMGP7BWiGC4g.JPEG.lookshu/20200709_161255.jpg?type=w2",
       "deadline": new Date("2021-06-24T18:00:00+09:00"),
@@ -48,7 +48,7 @@ export default function OrderPage() {
       "maximum": 4,
     },
     {
-      "order_id": 2,
+      "id": 2,
       "restaurant_name": "우리생고기",
       "restaurant_image": "https://postfiles.pstatic.net/MjAyMDA3MTJfMTY3/MDAxNTk0NTAzNjA0MjQ4._v7cqowx3WntgZqhlceqE1NbeZveVf0w-zvXNYlAaycg.Bf2rgxUZGmoPGYhpKxk-pJ09IKkNONgApMGP7BWiGC4g.JPEG.lookshu/20200709_161255.jpg?type=w2",
       "deadline": new Date("2021-06-11T18:00:00+09:00"),
@@ -58,7 +58,7 @@ export default function OrderPage() {
       "maximum": 4,
     },
     {
-      "order_id": 3,
+      "id": 3,
       "restaurant_name": "우리생고기",
       "restaurant_image": "https://postfiles.pstatic.net/MjAyMDA3MTJfMTY3/MDAxNTk0NTAzNjA0MjQ4._v7cqowx3WntgZqhlceqE1NbeZveVf0w-zvXNYlAaycg.Bf2rgxUZGmoPGYhpKxk-pJ09IKkNONgApMGP7BWiGC4g.JPEG.lookshu/20200709_161255.jpg?type=w2",
       "deadline": new Date("2021-06-11T18:00:00+09:00"),
@@ -68,7 +68,7 @@ export default function OrderPage() {
       "maximum": 4,
     },
     {
-      "order_id": 4,
+      "id": 4,
       "restaurant_name": "우리생고기",
       "restaurant_image": "https://postfiles.pstatic.net/MjAyMDA3MTJfMTY3/MDAxNTk0NTAzNjA0MjQ4._v7cqowx3WntgZqhlceqE1NbeZveVf0w-zvXNYlAaycg.Bf2rgxUZGmoPGYhpKxk-pJ09IKkNONgApMGP7BWiGC4g.JPEG.lookshu/20200709_161255.jpg?type=w2",
       "deadline": new Date("2021-06-11T18:00:00+09:00"),
@@ -78,7 +78,7 @@ export default function OrderPage() {
       "maximum": 4,
     },
     {
-      "order_id": 5,
+      "id": 5,
       "restaurant_name": "우리생고기",
       "restaurant_image": "https://postfiles.pstatic.net/MjAyMDA3MTJfMTY3/MDAxNTk0NTAzNjA0MjQ4._v7cqowx3WntgZqhlceqE1NbeZveVf0w-zvXNYlAaycg.Bf2rgxUZGmoPGYhpKxk-pJ09IKkNONgApMGP7BWiGC4g.JPEG.lookshu/20200709_161255.jpg?type=w2",
       "deadline": new Date("2021-06-09T22:00:00+09:00"),
